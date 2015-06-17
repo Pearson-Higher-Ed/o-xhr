@@ -74,9 +74,7 @@ module.exports = function(config) {
 
 		browserify: {
 			debug: true,
-			transform: [ 'debowerify', istanbul({
-				ignore: ['node_modules/**', 'test/**']
-			}) ]
+			transform: [ 'debowerify' ]
 		}
 
 	});
