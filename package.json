@@ -11,7 +11,7 @@
     "karma": "^0.12.25",
     "karma-browserify": "^1.0.0",
     "karma-coverage": "^0.2.6",
-    "karma-mocha": "^0.1.10",
+    "karma-mocha": "^0.1.9",
     "karma-phantomjs-launcher": "^0.1.4",
     "mocha": "^2.1.0",
     "sinon": "^1.14.0"
