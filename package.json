@@ -9,7 +9,7 @@
     "debowerify": "Financial-Times/debowerify",
     "expect.js": "^0.3.1",
     "karma": "^0.12.25",
-    "karma-browserify": "^4.0.0",
+    "karma-browserify": "^1.0.0",
     "karma-coverage": "^0.4.2",
     "karma-mocha": "^0.1.10",
     "karma-phantomjs-launcher": "^0.1.4",
