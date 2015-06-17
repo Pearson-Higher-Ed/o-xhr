@@ -29,8 +29,7 @@ module.exports = function(config) {
 		// preprocess matching files before serving them to the browser
 		// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 		preprocessors: {
-			'test/*.test.js': ['browserify'],
-			'src/js/*.js': ['coverage']
+			'test/*.test.js': ['browserify']
 		},
 
 
@@ -75,7 +74,9 @@ module.exports = function(config) {
 
 		browserify: {
 			debug: true,
-			transform: [ 'debowerify' ]
+			transform: [ 'debowerify', istanbul({
+				ignore: ['node_modules/**', 'test/**']
+			}) ]
 		}
 
 	});
