@@ -4,3 +4,4 @@ doc*
 demos/local*
 .sass-cache*
 .yo-rc.json
+coverage*
