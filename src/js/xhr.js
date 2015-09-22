@@ -20,8 +20,8 @@ function createXhr(options) {
 
 	function handleReadystatechange() {
 		if (request.readyState !== 4) return;
-		if (!isSuccess(request.status)) options.onError(request.responseText);
-		else options.onSuccess(request.responseText);
+		if (!isSuccess(request.status)) options.onError(request);
+		else options.onSuccess(request);
 	}
 
 	request.open(options.method, options.url, true);

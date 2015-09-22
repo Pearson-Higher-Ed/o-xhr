@@ -39,11 +39,11 @@ describe('xhr(options)', function () {
 		xhr({
 			url: route,
 			method: 'FOO',
-			onError: function (res) {
+			onError: function (req) {
 				done(expect().fail('Called error when it should have been a success.'));
 			},
-			onSuccess: function (res){
-				expect(JSON.parse(res)).to.be.a(Object);
+			onSuccess: function (req){
+				expect(JSON.parse(req.responseText)).to.be.a(Object);
 				done();
 			}});
 
@@ -57,11 +57,11 @@ describe('xhr(options)', function () {
 		xhr({
 			url: route,
 			method: 'FOO',
-			onError: function (res) {
+			onError: function (req) {
 				done(expect().fail('Called error when it should have been a success.'));
 			},
-			onSuccess: function (res){
-				expect(JSON.parse(res)).to.be.a(Object);
+			onSuccess: function (req){
+				expect(JSON.parse(req.responseText)).to.be.a(Object);
 				done();
 			}});
 
@@ -75,11 +75,11 @@ describe('xhr(options)', function () {
 		xhr({
 			url: route,
 			method: 'FOO',
-			onError: function (res) {
+			onError: function (req) {
 				done(expect().fail('Called error when it should have been a success.'));
 			},
-			onSuccess: function (res){
-				expect(JSON.parse(res)).to.be.a(Object);
+			onSuccess: function (req){
+				expect(JSON.parse(req.responseText)).to.be.a(Object);
 				done();
 			}});
 
@@ -93,11 +93,11 @@ describe('xhr(options)', function () {
 		xhr({
 			url: route,
 			method: 'FOO',
-			onError: function (res) {
+			onError: function (req) {
 				done(expect().fail('Called error when it should have been a success.'));
 			},
-			onSuccess: function (res){
-				expect(JSON.parse(res)).to.be.a(Object);
+			onSuccess: function (req){
+				expect(JSON.parse(req.responseText)).to.be.a(Object);
 				done();
 			}});
 
@@ -111,11 +111,11 @@ describe('xhr(options)', function () {
 		xhr({
 			url: route,
 			method: 'FOO',
-			onError: function (res){
-				expect(JSON.parse(res)).to.be.a(Object);
+			onError: function (req){
+				expect(JSON.parse(req.responseText)).to.be.a(Object);
 				done();
 			},
-			onSuccess: function (res){
+			onSuccess: function (req){
 				done(expect().fail('Called success when it should have failed'));
 			}});
 
@@ -129,11 +129,11 @@ describe('xhr(options)', function () {
 		xhr({
 			url: route,
 			method: 'FOO',
-			onError: function (res){
-				expect(JSON.parse(res)).to.be.a(Object);
+			onError: function (req){
+				expect(JSON.parse(req.responseText)).to.be.a(Object);
 				done();
 			},
-			onSuccess: function (res){
+			onSuccess: function (req){
 				done(expect().fail('Called success when it should have failed'));
 			}});
 
