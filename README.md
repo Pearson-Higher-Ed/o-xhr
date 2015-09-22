@@ -14,7 +14,7 @@ xhr({
   onError: function (res) {
     formatResponse(res);
   },
-  onComplete: function (res){
+  onSuccess: function (res){
     formatResponse(res);
   }
 });
@@ -32,7 +32,7 @@ This should be a string to represent the path to the resource
 
 A string containing the HTTP verb you are using.  Please note that there is no validation on this field, so you should use care to make sure you are using valid methods.
 
-### onComplete - Optional
+### onSuccess - Optional
 
 A callback function to be executed on successful completion of the request.
 
@@ -43,10 +43,6 @@ A callback function to be executed if the request returns an error.
 ### data - Optional
 
 A string representing the body of the request.
-
-## Browser Support
-
-This component has been tested in IE, Firefox, and Chrome.
 
 ## License
 

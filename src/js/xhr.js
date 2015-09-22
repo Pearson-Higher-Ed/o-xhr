@@ -7,23 +7,23 @@ function createXhr(options) {
 
 	options.url = options.url || '';
 	options.method = options.method || 'GET';
-	options.onComplete = options.onComplete || noop;
+	options.onSuccess = options.onSuccess || noop;
 	options.onError = options.onError || noop;
 	options.data = options.data || '';
 
+	var request = options.xhr || new XMLHttpRequest();
+
 	function handleReadystatechange() {
-		if (r.readyState !== 4) return;
-		if (!isSuccess(r.status)) options.onError(r.responseText);
-		else options.onComplete(r.responseText);
+		if (request.readyState !== 4) return;
+		if (!isSuccess(request.status)) options.onError(request.responseText);
+		else options.onSuccess(request.responseText);
 	}
 
-	var r = options.xhr || new XMLHttpRequest();
+	request.open(options.method, options.url, true);
+	request.onreadystatechange = handleReadystatechange;
+	request.send(options.data);
 
-	r.open(options.method, options.url, true);
-	r.onreadystatechange = handleReadystatechange;
-	r.send(options.data);
-
-	return r;
+	return request;
 }
 
 function noop() { }
