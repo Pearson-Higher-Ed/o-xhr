@@ -1,33 +1,33 @@
 'use strict';
 
-var noop = function () {};
+module.exports = createXhr;
 
-module.exports = function (options) {
+function createXhr(options) {
 	options = options || {};
 
-	var successCodes = [ 200, 201, 202, 204 ];
-
-	options.url = options.url || "";
-	options.method = options.method || "GET";
+	options.url = options.url || '';
+	options.method = options.method || 'GET';
 	options.onComplete = options.onComplete || noop;
 	options.onError = options.onError || noop;
 	options.data = options.data || '';
 
-	var r = new XMLHttpRequest();
+	function handleReadystatechange() {
+		if (r.readyState !== 4) return;
+		if (!isSuccess(r.status)) options.onError(r.responseText);
+		else options.onComplete(r.responseText);
+	}
+
+	var r = options.xhr || new XMLHttpRequest();
+
 	r.open(options.method, options.url, true);
-	r.onreadystatechange = function () {
-		if (r.readyState !== 4) {
-			return;
-		}
-		else{
-			if (successCodes.indexOf(r.status) === -1) {
-				options.onError(r.responseText);
-			}
-			else {
-				options.onComplete(r.responseText);
-			}
-		}
-	};
+	r.onreadystatechange = handleReadystatechange;
 	r.send(options.data);
+
 	return r;
-};
+}
+
+function noop() { }
+
+function isSuccess(status) {
+	return status >= 200 && status <= 299;
+}
