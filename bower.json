@@ -1,5 +1,5 @@
 {
-  "name": "o-he-xhr",
+  "name": "o-xhr",
   "dependencies": {},
   "main": [
     "main.js"

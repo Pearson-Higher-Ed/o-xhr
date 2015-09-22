@@ -1,8 +1,8 @@
 {
-    "description": "This component will provide a lightweight, cross-browser abstraction for making XHR requests.",
+    "description": "A lightweight, cross-browser abstraction for making XHR requests that supports IE9+.",
     "origamiType": "module",
     "origamiVersion": 1,
-    "support": "https://github.com/Pearson-Higher-Ed/o-he-xhr/issues",
+    "support": "https://github.com/Pearson-Higher-Ed/o-xhr/issues",
     "supportStatus": "experimental",
     "demos": [
         {
