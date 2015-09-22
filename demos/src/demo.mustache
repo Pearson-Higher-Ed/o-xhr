@@ -1,17 +1,25 @@
 <div>
-  <h1>XHR Demo</h1>
-  <button class="request">GET</button>
-  <button class="request">POST</button>
-  <button class="request">PUT</button>
-  <button class="request">DELETE</button>
-  <button class="clear">CLEAR RESULTS</button>
-  <br /><br />
-  <label ref="url">URL</label>
-  <input id="url" value="http://reqr.es/api/users"></input>
-  <br /><br />
-  <label ref="data">Data</label>
-  <textarea id="data"></textarea>
-  <br /><br />
-  <span>Results</span>
-  <div class="results"><div>
+	<pre>
+var xhr = require('o-xhr');
+
+xhr({
+	url: document.getElementById('url').value,
+	method: 'GET',
+	onError: renderResponse,
+	onSuccess: renderResponse
+});
+
+function renderResponse(request) {
+	document.getElementById('results')
+		.textContent = request.responseText
+}
+	</pre>
+	<hr>
+	<div>
+		<input type="text" id="url" value="http://reqr.es/api/users">
+		<button id="get">GET</button>
+	</div>
+	<div>
+		<textarea id="results" disabled></textarea>
+	</div>
 <div>
