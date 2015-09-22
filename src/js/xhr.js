@@ -3,9 +3,14 @@
 module.exports = createXhr;
 
 function createXhr(options) {
-	options = options || {};
+	if (arguments.length === 0) throw new TypeError('Expected 1 argument, got 0');
+	if (typeof options === 'string') {
+		options = {
+			url: options
+		};
+	}
+	if (!options.url) throw new TypeError('The \'url\' option is required');
 
-	options.url = options.url || '';
 	options.method = options.method || 'GET';
 	options.onSuccess = options.onSuccess || noop;
 	options.onError = options.onError || noop;

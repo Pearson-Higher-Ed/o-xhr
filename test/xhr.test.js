@@ -21,7 +21,15 @@ describe('xhr(options)', function () {
 	});
 
 	it('should return an instance of XMLHttpRequest', function () {
-		expect(xhr()).to.be.an(XMLHttpRequest);
+		expect(xhr('https://example.com')).to.be.an(XMLHttpRequest);
+	});
+
+	it('should throw an error when there are no arguments', function () {
+		expect(function () { xhr(); }).to.throwException(/Expected 1 argument, got 0/);
+	});
+
+	it('should throw an error when the first argument is an object and the the url property is undefined', function () {
+		expect(function () { xhr({});}).to.throwException(/The 'url' option is required/);
 	});
 
 	it('should execute the onSuccess function when the response is 200', function (done) {
@@ -138,7 +146,7 @@ describe('xhr(options)', function () {
 			send: function () {}
 		});
 
-		xhr({ xhr: mockXMLHttpRequestInstance });
+		xhr({ xhr: mockXMLHttpRequestInstance, url: 'https://example.com' });
 
 		expect(mockXMLHttpRequestInstance.open.calledOnce).to.be(true);
 	});

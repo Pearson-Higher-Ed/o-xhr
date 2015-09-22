@@ -6,23 +6,22 @@ This component provides a lightweight, cross-browser abstraction for making XHR 
 
 ### Example
 
-```
+```js
 var xhr = require('o-xhr');
 
 xhr({
   url: 'http://reqr.es/api/users',
-  onError: function (res) {
+  onSuccess: function (res){
     formatResponse(res);
   },
-  onSuccess: function (res){
+  onError: function (res) {
     formatResponse(res);
   }
 });
 
 ```
 
-
-The xhr function accepts a settings object as its only argument.  The settings object can contain the following options.
+The xhr function accepts a URL or a settings object as its only argument.  The settings object can contain the following options.
 
 ### url - Required
 
@@ -43,6 +42,18 @@ A callback function to be executed if the request returns an error.
 ### data - Optional
 
 A string representing the body of the request.
+
+### xhr - Optional
+
+An instance that implements the XMLHttpRequest API. This can be used to mock XMLHttpRequest:
+
+```js
+xhr({
+	url: 'http://example.com',
+	xhr: new MockXMLHttpRequest()
+});
+```
+
 
 ## License
 
