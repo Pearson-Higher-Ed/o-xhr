@@ -1,31 +1,33 @@
 'use strict';
 
 var noop = function () {};
-module.exports = function (settings) {
+
+module.exports = function (options) {
+	options = options || {};
+
 	var successCodes = [ 200, 201, 202, 204 ];
 
-	/* setup defaults */
-	settings.url = settings.url || "";
-	settings.method = settings.method || "GET";
-	settings.onComplete = settings.onComplete || noop;
-	settings.onError = settings.onError || noop;
-	settings.data = settings.data || '';
+	options.url = options.url || "";
+	options.method = options.method || "GET";
+	options.onComplete = options.onComplete || noop;
+	options.onError = options.onError || noop;
+	options.data = options.data || '';
 
 	var r = new XMLHttpRequest();
-	r.open(settings.method, settings.url, true);
+	r.open(options.method, options.url, true);
 	r.onreadystatechange = function () {
 		if (r.readyState !== 4) {
 			return;
 		}
 		else{
 			if (successCodes.indexOf(r.status) === -1) {
-				settings.onError(r.responseText);
+				options.onError(r.responseText);
 			}
 			else {
-				settings.onComplete(r.responseText);
+				options.onComplete(r.responseText);
 			}
 		}
 	};
-	r.send(settings.data);
+	r.send(options.data);
 	return r;
 };
