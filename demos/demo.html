@@ -13,7 +13,7 @@
 <body>
 <div>
 	<pre>
-var xhr = require('o-xhr');
+import xhr from 'o-xhr';
 
 xhr({
 	url: document.getElementById('url').value,
@@ -24,7 +24,7 @@ xhr({
 
 function renderResponse(request) {
 	document.getElementById('results')
-		.textContent = request.responseText
+		.textContent = request.responseText;
 }
 	</pre>
 	<hr>
