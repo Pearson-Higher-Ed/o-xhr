@@ -43,6 +43,10 @@ A callback function with signature `function(request)`, where request is the raw
 
 The body of the request.
 
+### headers - Optional
+
+Headers for the request, as a json object representing key-value pairs.  These are set after open(), but before send().
+
 ### xhr - Optional
 
 An instance that implements the XMLHttpRequest API. This can be used to mock XMLHttpRequest:

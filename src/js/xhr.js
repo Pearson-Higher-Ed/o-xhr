@@ -14,6 +14,7 @@ function createXhr(options) {
 	options.method = options.method || 'GET';
 	options.onSuccess = options.onSuccess || noop;
 	options.onError = options.onError || noop;
+	options.headers = options.headers || {};
 	options.data = options.data || '';
 
 	var request = options.xhr || new XMLHttpRequest();
@@ -26,6 +27,13 @@ function createXhr(options) {
 
 	request.open(options.method, options.url, true);
 	request.onreadystatechange = handleReadystatechange;
+	for(var h in options.headers) {
+		if (options.header.hasOwnProperty(h)) {
+			var hv = options.headers[h];
+			request.setRequestHeader(h,hv);
+		}
+
+	}
 	request.send(options.data);
 
 	return request;
