@@ -1,36 +1,33 @@
-/* global describe, beforeEach, afterEach, it */
+/* global describe, beforeEach, afterEach, it, sinon */
 
-'use strict';
+import expect from 'expect.js';
+import xhr from '../main';
 
-var expect = require('expect.js');
-var sinon = require('sinon');
-var xhr = require('../src/js/xhr');
+describe('xhr(options)', () => {
 
-describe('xhr(options)', function () {
+	const route = '/foo/bar';
+	const headerValue = 'application/json';
+	const body = '{ "some": "json" }';
+	let server;
 
-	var route = '/foo/bar';
-	var headerValue = 'application/json';
-	var body = '{ "some": "json" }';
-	var server;
-
-	beforeEach(function () {
+	beforeEach(() => {
 		server = sinon.fakeServer.create();
 	});
 
-	afterEach(function () {
+	afterEach(() => {
 		server.restore();
 	});
 
-	it('should return an instance of XMLHttpRequest', function () {
+	it('should return an instance of XMLHttpRequest', () => {
 		expect(xhr('https://example.com')).to.be.an(XMLHttpRequest);
 	});
 
-	it('should throw an error when there are no arguments', function () {
-		expect(function () { xhr(); }).to.throwException(/Expected 1 argument, got 0/);
+	it('should throw an error when there are no arguments', () => {
+		expect(() => xhr()).to.throwException(/Expected 1 argument, got 0/);
 	});
 
-	it('should throw an error when the first argument is an object and the the url property is undefined', function () {
-		expect(function () { xhr({});}).to.throwException(/The 'url' option is required/);
+	it('should throw an error when the first argument is an object and the the url property is undefined', () => {
+		expect(() => xhr({})).to.throwException(/The 'url' option is required/);
 	});
 
 	it('should execute the onSuccess function when the response is 200', function (done) {
@@ -40,10 +37,10 @@ describe('xhr(options)', function () {
 		xhr({
 			url: route,
 			method: 'FOO',
-			onError: function (req) {
+			onError: () => {
 				done(expect().fail('Called error when it should have been a success.'));
 			},
-			onSuccess: function (req){
+			onSuccess: (req) => {
 				expect(JSON.parse(req.responseText)).to.be.a(Object);
 				done();
 			}});
@@ -58,10 +55,10 @@ describe('xhr(options)', function () {
 		xhr({
 			url: route,
 			method: 'FOO',
-			onError: function (req) {
+			onError: () => {
 				done(expect().fail('Called error when it should have been a success.'));
 			},
-			onSuccess: function (req){
+			onSuccess: (req) => {
 				expect(JSON.parse(req.responseText)).to.be.a(Object);
 				done();
 			}});
@@ -76,10 +73,10 @@ describe('xhr(options)', function () {
 		xhr({
 			url: route,
 			method: 'FOO',
-			onError: function (req) {
+			onError: () => {
 				done(expect().fail('Called error when it should have been a success.'));
 			},
-			onSuccess: function (req){
+			onSuccess: (req) => {
 				expect(JSON.parse(req.responseText)).to.be.a(Object);
 				done();
 			}});
@@ -94,10 +91,10 @@ describe('xhr(options)', function () {
 		xhr({
 			url: route,
 			method: 'FOO',
-			onError: function (req) {
+			onError: () => {
 				done(expect().fail('Called error when it should have been a success.'));
 			},
-			onSuccess: function (req){
+			onSuccess: (req) => {
 				expect(JSON.parse(req.responseText)).to.be.a(Object);
 				done();
 			}});
@@ -112,11 +109,11 @@ describe('xhr(options)', function () {
 		xhr({
 			url: route,
 			method: 'FOO',
-			onError: function (req){
+			onError: (req) => {
 				expect(JSON.parse(req.responseText)).to.be.a(Object);
 				done();
 			},
-			onSuccess: function (req){
+			onSuccess: () => {
 				done(expect().fail('Called success when it should have failed'));
 			}});
 
@@ -130,19 +127,19 @@ describe('xhr(options)', function () {
 		xhr({
 			url: route,
 			method: 'FOO',
-			onError: function (req){
+			onError: (req) => {
 				expect(JSON.parse(req.responseText)).to.be.a(Object);
 				done();
 			},
-			onSuccess: function (req){
+			onSuccess: () => {
 				done(expect().fail('Called success when it should have failed'));
 			}});
 
 		server.respond();
 	});
 
-	it('should use the provided XMLHttpRequest object', function () {
-		var mockXMLHttpRequestInstance = {
+	it('should use the provided XMLHttpRequest object', () => {
+		const mockXMLHttpRequestInstance = {
 			open: sinon.stub(),
 			send: sinon.stub()
 		};

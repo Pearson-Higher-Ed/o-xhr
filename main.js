@@ -1,4 +1,1 @@
-/*global require, module*/
-'use strict';
-
-module.exports = require('./src/js/xhr');
+export { default } from './src/js/xhr';

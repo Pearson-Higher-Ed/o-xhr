@@ -1,12 +1,11 @@
-/*global require*/
-'use strict';
+import xhr from '../../main';
 
-var xhr =  require('../../main');
+document.getElementById('get').addEventListener('click', e => {
 
-document.getElementById('get').addEventListener('click', handleGetBtnClick);
-
-function handleGetBtnClick(e) {
-	e.preventDefault();
+	function renderResponse(request) {
+		document.getElementById('results')
+			.textContent = request.responseText;
+	}
 
 	xhr({
 		url: document.getElementById('url').value,
@@ -14,9 +13,6 @@ function handleGetBtnClick(e) {
 		onError: renderResponse,
 		onSuccess: renderResponse
 	});
-}
 
-function renderResponse(request) {
-	document.getElementById('results')
-		.textContent = request.responseText;
-}
+	e.preventDefault();
+});
