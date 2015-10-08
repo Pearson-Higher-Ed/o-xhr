@@ -28,7 +28,7 @@ function createXhr(options) {
 	request.open(options.method, options.url, true);
 	request.onreadystatechange = handleReadystatechange;
 	for(var h in options.headers) {
-		if (options.header.hasOwnProperty(h)) {
+		if (options.headers.hasOwnProperty(h)) {
 			var hv = options.headers[h];
 			request.setRequestHeader(h,hv);
 		}
