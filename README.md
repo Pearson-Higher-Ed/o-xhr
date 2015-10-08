@@ -1,4 +1,4 @@
-# o-xhr [![Build Status](https://travis-ci.org/Pearson-Higher-Ed/o-xhr.svg)](https://travis-ci.org/Pearson-Higher-Ed/o-xhr)
+# o-xhr [![Build Status](https://travis-ci.org/Pearson-Higher-Ed/o-xhr.svg)](https://travis-ci.org/Pearson-Higher-Ed/o-xhr) [![Coverage Status](https://coveralls.io/repos/Pearson-Higher-Ed/o-xhr/badge.svg?branch=master&service=github)](https://coveralls.io/github/Pearson-Higher-Ed/o-xhr?branch=master)
 
 ## Description
 
