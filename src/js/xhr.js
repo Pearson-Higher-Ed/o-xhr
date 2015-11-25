@@ -28,7 +28,7 @@ export default function createXhr(options) {
 	request.onreadystatechange = handleReadystatechange;
 
 	for(const h in settings.headers) {
-		if (settings.header.hasOwnProperty(h)) {
+		if (settings.headers.hasOwnProperty(h)) {
 			const hv = settings.headers[h];
 			request.setRequestHeader(h, hv);
 		}
